@@ -1,0 +1,47 @@
+{
+  "records": [
+    {
+      "id": 1,
+      "name": "Hector Goffe",
+      "category": "Character",
+      "firstPage": 11,
+      "entries": [
+        {
+          "id": 11,
+          "page": 11,
+          "text": "was dead"
+        },
+        {
+          "id": 12,
+          "page": 80,
+          "text": "no, really"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Garovel",
+      "category": "Character",
+      "firstPage": 17,
+      "entries": [
+        {
+          "id": 21,
+          "page": 17,
+          "text": "Looks like a Reaper",
+          "summary": "Is a Reaper"
+        },
+        {
+          "id": 230,
+          "page": 1157,
+          "text": "Is a snarky bastard"
+        },
+        {
+          "id": 22,
+          "page": 327,
+          "text": "Likes chocolate icecream",
+          "summary": "Replaced"
+        }
+      ]
+    }
+  ]
+}

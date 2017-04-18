@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Brunch + Elm</title>
+	<link rel="stylesheet" href="css/app.css">
+</head>
+
+<body></body>
+
+<!-- Elm and JS -->
+<script src="js/main.js"></script>
+<script src="js/app.js"></script>
+
+<!-- Start Elm -->
+<script type="text/javascript">
+	var app = Elm.Main.fullscreen();
+
+	app.ports.jsonExport.subscribe(function(content) {
+		var result = download(content);
+		app.ports.jsonResult.send(result);
+	});
+
+	function download(content) {
+		console.log("jsonExport");
+		var element = document.createElement('a');
+		element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+		element.setAttribute('download', 'zk.json');
+		element.style.display = 'none';
+		document.body.appendChild(element);
+		element.click();
+		document.body.removeChild(element);
+		return "clicked";
+	}
+</script>
+</html>
