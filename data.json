@@ -1,45 +1,230 @@
 {
   "records": [
     {
-      "id": 1,
+      "id": 17374,
       "name": "Hector Goffe",
       "category": "Character",
-      "firstPage": 11,
+      "firstPage": 1,
       "entries": [
         {
-          "id": 11,
-          "page": 11,
-          "text": "was dead"
+          "id": 0,
+          "page": 1,
+          "text": "Hector and Garovel meet",
+          "summary": null
         },
         {
-          "id": 12,
-          "page": 80,
-          "text": "no, really"
+          "id": 29863,
+          "page": 136,
+          "text": "Hector buys a bike",
+          "summary": null
+        },
+        {
+          "id": 31132,
+          "page": 138,
+          "text": "Hector crashes his bike",
+          "summary": null
+        },
+        {
+          "id": 93273,
+          "page": 142,
+          "text": "Hector crashes again",
+          "summary": null
         }
       ]
     },
     {
-      "id": 2,
+      "id": 93165,
       "name": "Garovel",
       "category": "Character",
-      "firstPage": 17,
+      "firstPage": 1,
       "entries": [
         {
-          "id": 21,
-          "page": 17,
-          "text": "Looks like a Reaper",
-          "summary": "Is a Reaper"
-        },
+          "id": 0,
+          "page": 1,
+          "text": "Garovel and Hector meet",
+          "summary": null
+        }
+      ]
+    },
+    {
+      "id": 39057,
+      "name": "Samuel Goffe",
+      "category": "Character",
+      "firstPage": 7,
+      "entries": [
         {
-          "id": 230,
-          "page": 1157,
-          "text": "Is a snarky bastard"
-        },
+          "id": 0,
+          "page": 7,
+          "text": "Hector's Father",
+          "summary": null
+        }
+      ]
+    },
+    {
+      "id": 88194,
+      "name": "Vanessa Goffe",
+      "category": "Character",
+      "firstPage": 7,
+      "entries": [
         {
-          "id": 22,
-          "page": 327,
-          "text": "Likes chocolate icecream",
-          "summary": "Replaced"
+          "id": 0,
+          "page": 7,
+          "text": "Hector's Mother",
+          "summary": null
+        }
+      ]
+    },
+    {
+      "id": 56302,
+      "name": "Geoffrey Rofal",
+      "category": "Character",
+      "firstPage": 65,
+      "entries": [
+        {
+          "id": 0,
+          "page": 65,
+          "text": "Nephew to Joseph Rofal, grandson to Damian Rofal. He is an “aberration”-- a monster in human form. He sees reapers as blurry humans. ",
+          "summary": null
+        }
+      ]
+    },
+    {
+      "id": 31018,
+      "name": "Joseph Rofal",
+      "category": "Character",
+      "firstPage": 70,
+      "entries": [
+        {
+          "id": 0,
+          "page": 70,
+          "text": "The head of the Rofal crime family. Forced Colt to work for him. ",
+          "summary": null
+        }
+      ]
+    },
+    {
+      "id": 38568,
+      "name": "Damian Rofal",
+      "category": "Character",
+      "firstPage": 211,
+      "entries": [
+        {
+          "id": 0,
+          "page": 211,
+          "text": "Father to Joseph Rofal, grandfather to Geoffrey Rofal. He is a servant. His reaper is Feromas. Unknown alignment. Despite his mental instability, he seems to possess great power and knowledge. He sees reapers as jesters. ",
+          "summary": null
+        }
+      ]
+    },
+    {
+      "id": 96356,
+      "name": "Feromas",
+      "category": "Character",
+      "firstPage": 211,
+      "entries": [
+        {
+          "id": 0,
+          "page": 211,
+          "text": "A reaper of unknown alignment. His servant is Damian Rofal. Feromas is also Damian's great grandfather.",
+          "summary": null
+        }
+      ]
+    },
+    {
+      "id": 40412,
+      "name": "Jeremiah Colt",
+      "category": "Character",
+      "firstPage": 44,
+      "entries": [
+        {
+          "id": 0,
+          "page": 44,
+          "text": "An ex-cop who used to kill criminals and was later forced to murder innocent people. ",
+          "summary": "Became a servant during the Third Oath. His reaper is Bohwanox. Independently aligned. He sees reapers as black-hooded figures. "
+        }
+      ]
+    },
+    {
+      "id": 71634,
+      "name": "Bohwanox",
+      "category": "Character",
+      "firstPage": 44,
+      "entries": [
+        {
+          "id": 0,
+          "page": 44,
+          "text": "A reaper. Around 100 years old--notably much younger than most reapers. He had no servant until the Third Oath, wherein he resurrected Colt. ",
+          "summary": null
+        }
+      ]
+    },
+    {
+      "id": 89780,
+      "name": "Materialization",
+      "category": "Power",
+      "firstPage": 0,
+      "entries": [
+        {
+          "id": 0,
+          "page": 0,
+          "text": "",
+          "summary": "Creates and Destroys Mass of a single element"
+        }
+      ]
+    },
+    {
+      "id": 23075,
+      "name": "Transfiguration",
+      "category": "Power",
+      "firstPage": 10,
+      "entries": [
+        {
+          "id": 0,
+          "page": 10,
+          "text": "Converts the Servants body mass to a single element",
+          "summary": null
+        }
+      ]
+    },
+    {
+      "id": 49801,
+      "name": "Pan-Forma",
+      "category": "Power",
+      "firstPage": 100,
+      "entries": [
+        {
+          "id": 0,
+          "page": 100,
+          "text": "Combines multiple ability types by merging the reaper and servant",
+          "summary": null
+        }
+      ]
+    },
+    {
+      "id": 13597,
+      "name": "House Belgrant",
+      "category": "World",
+      "firstPage": 0,
+      "entries": [
+        {
+          "id": 0,
+          "page": 0,
+          "text": "The current ruling house of Atreya",
+          "summary": null
+        }
+      ]
+    },
+    {
+      "id": 62123,
+      "name": "Atreya",
+      "category": "World",
+      "firstPage": 200,
+      "entries": [
+        {
+          "id": 0,
+          "page": 200,
+          "text": "A small country on the Eloan continent",
+          "summary": null
         }
       ]
     }

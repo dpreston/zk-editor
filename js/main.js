@@ -10669,16 +10669,16 @@ var _user$project$Editor_Editor$update = F2(
 						A2(_elm_lang$core$Random$int, 10000, 99999))
 				};
 			case 'AddRecord':
+				var records_ = _user$project$Editor_Zipper$moveLast(
+					A2(
+						_user$project$Editor_Zipper$insertLast,
+						_user$project$Editor_Data$defaultRecordZ(_p4._0),
+						_p11));
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						_p10,
-						{
-							records: A2(
-								_user$project$Editor_Zipper$insertLast,
-								_user$project$Editor_Data$defaultRecordZ(_p4._0),
-								_p11)
-						}),
+						{records: records_}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'SelectRecord':
