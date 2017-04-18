@@ -14065,18 +14065,27 @@ var _user$project$Editor_Data$recordEncoder = function (record) {
 					ctor: '::',
 					_0: {
 						ctor: '_Tuple2',
-						_0: 'firstPage',
-						_1: _elm_lang$core$Json_Encode$int(record.firstPage)
+						_0: 'category',
+						_1: _elm_lang$core$Json_Encode$string(
+							_elm_lang$core$Basics$toString(record.category))
 					},
 					_1: {
 						ctor: '::',
 						_0: {
 							ctor: '_Tuple2',
-							_0: 'entries',
-							_1: _elm_lang$core$Json_Encode$list(
-								A2(_elm_lang$core$List$map, _user$project$Editor_Data$entryEncoder, entries_))
+							_0: 'firstPage',
+							_1: _elm_lang$core$Json_Encode$int(record.firstPage)
 						},
-						_1: {ctor: '[]'}
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: 'entries',
+								_1: _elm_lang$core$Json_Encode$list(
+									A2(_elm_lang$core$List$map, _user$project$Editor_Data$entryEncoder, entries_))
+							},
+							_1: {ctor: '[]'}
+						}
 					}
 				}
 			}
@@ -14220,6 +14229,9 @@ var _user$project$Editor_Editor$jsonExport = _elm_lang$core$Native_Platform.outg
 	});
 var _user$project$Editor_Editor$jsonResult = _elm_lang$core$Native_Platform.incomingPort('jsonResult', _elm_lang$core$Json_Decode$string);
 var _user$project$Editor_Editor$NoOp = {ctor: 'NoOp'};
+var _user$project$Editor_Editor$SelectCategory = function (a) {
+	return {ctor: 'SelectCategory', _0: a};
+};
 var _user$project$Editor_Editor$ExportJson = {ctor: 'ExportJson'};
 var _user$project$Editor_Editor$DeleteEntry = function (a) {
 	return {ctor: 'DeleteEntry', _0: a};
@@ -14395,6 +14407,15 @@ var _user$project$Editor_Editor$DeleteRecord = function (a) {
 	return {ctor: 'DeleteRecord', _0: a};
 };
 var _user$project$Editor_Editor$recordHeaderView = function (record) {
+	var buttonClass = F2(
+		function (a, b) {
+			var _p0 = _elm_lang$core$Native_Utils.eq(a, b);
+			if (_p0 === true) {
+				return _elm_lang$html$Html_Attributes$class('selected');
+			} else {
+				return _elm_lang$html$Html_Attributes$class('');
+			}
+		});
 	return A2(
 		_elm_lang$html$Html$div,
 		{
@@ -14427,19 +14448,79 @@ var _user$project$Editor_Editor$recordHeaderView = function (record) {
 					{
 						ctor: '::',
 						_0: _elm_lang$html$Html_Events$onClick(
-							_user$project$Editor_Editor$DeleteRecord(record.id)),
+							_user$project$Editor_Editor$SelectCategory(_user$project$Editor_Data$Character)),
 						_1: {
 							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('delete'),
+							_0: A2(buttonClass, _user$project$Editor_Data$Character, record.category),
 							_1: {ctor: '[]'}
 						}
 					},
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html$text('X'),
+						_0: _elm_lang$html$Html$text('c'),
 						_1: {ctor: '[]'}
 					}),
-				_1: {ctor: '[]'}
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$button,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Events$onClick(
+								_user$project$Editor_Editor$SelectCategory(_user$project$Editor_Data$Power)),
+							_1: {
+								ctor: '::',
+								_0: A2(buttonClass, _user$project$Editor_Data$Power, record.category),
+								_1: {ctor: '[]'}
+							}
+						},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('p'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$button,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Events$onClick(
+									_user$project$Editor_Editor$SelectCategory(_user$project$Editor_Data$World)),
+								_1: {
+									ctor: '::',
+									_0: A2(buttonClass, _user$project$Editor_Data$World, record.category),
+									_1: {ctor: '[]'}
+								}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('w'),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$button,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Events$onClick(
+										_user$project$Editor_Editor$DeleteRecord(record.id)),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$class('delete'),
+										_1: {ctor: '[]'}
+									}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('X'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
 			}
 		});
 };
@@ -14527,20 +14608,20 @@ var _user$project$Editor_Editor$AddRecord = function (a) {
 	return {ctor: 'AddRecord', _0: a};
 };
 var _user$project$Editor_Editor$update = F2(
-	function (msg, _p0) {
-		var _p1 = _p0;
-		var _p10 = _p1.records;
-		var _p9 = _p1;
-		var _p2 = _p10;
-		var before = _p2._0;
-		var current = _p2._1;
-		var after = _p2._2;
-		var _p3 = msg;
-		switch (_p3.ctor) {
+	function (msg, _p1) {
+		var _p2 = _p1;
+		var _p11 = _p2.records;
+		var _p10 = _p2;
+		var _p3 = _p11;
+		var before = _p3._0;
+		var current = _p3._1;
+		var after = _p3._2;
+		var _p4 = msg;
+		switch (_p4.ctor) {
 			case 'RequestRecord':
 				return {
 					ctor: '_Tuple2',
-					_0: _p9,
+					_0: _p10,
 					_1: A2(
 						_elm_lang$core$Random$generate,
 						_user$project$Editor_Editor$AddRecord,
@@ -14550,33 +14631,33 @@ var _user$project$Editor_Editor$update = F2(
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
-						_p9,
+						_p10,
 						{
 							records: A2(
 								_user$project$Editor_Zipper$insertLast,
-								_user$project$Editor_Data$defaultRecordZ(_p3._0),
-								_p10)
+								_user$project$Editor_Data$defaultRecordZ(_p4._0),
+								_p11)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'SelectRecord':
 				var records_ = function () {
-					var _p4 = A2(
+					var _p5 = A2(
 						_user$project$Editor_Zipper$matchFirst,
 						function (r) {
-							return _elm_lang$core$Native_Utils.eq(r.id, _p3._0);
+							return _elm_lang$core$Native_Utils.eq(r.id, _p4._0);
 						},
-						_p10);
-					if (_p4.ctor === 'Just') {
-						return _p4._0;
+						_p11);
+					if (_p5.ctor === 'Just') {
+						return _p5._0;
 					} else {
-						return _p10;
+						return _p11;
 					}
 				}();
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
-						_p9,
+						_p10,
 						{records: records_}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -14584,35 +14665,52 @@ var _user$project$Editor_Editor$update = F2(
 				var records_ = A2(
 					_user$project$Editor_Zipper$withDefault,
 					_user$project$Editor_Data$defaultRecordZ(0),
-					_user$project$Editor_Zipper$deleteForwardBackward(_p10));
+					_user$project$Editor_Zipper$deleteForwardBackward(_p11));
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
-						_p9,
+						_p10,
 						{records: records_}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
-			case 'UpdateName':
+			case 'SelectCategory':
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
-						_p9,
+						_p10,
 						{
 							records: A2(
 								_user$project$Editor_Zipper$mapCurrent,
 								function (r) {
 									return _elm_lang$core$Native_Utils.update(
 										r,
-										{name: _p3._0});
+										{category: _p4._0});
 								},
-								_p10)
+								_p11)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'UpdateName':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						_p10,
+						{
+							records: A2(
+								_user$project$Editor_Zipper$mapCurrent,
+								function (r) {
+									return _elm_lang$core$Native_Utils.update(
+										r,
+										{name: _p4._0});
+								},
+								_p11)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'RequestEntry':
 				return {
 					ctor: '_Tuple2',
-					_0: _p9,
+					_0: _p10,
 					_1: A2(
 						_elm_lang$core$Random$generate,
 						_user$project$Editor_Editor$AddEntry,
@@ -14621,7 +14719,7 @@ var _user$project$Editor_Editor$update = F2(
 			case 'AddEntry':
 				var entries_ = A2(
 					_user$project$Editor_Zipper$insertLast,
-					_user$project$Editor_Data$defaultEntry(_p3._0),
+					_user$project$Editor_Data$defaultEntry(_p4._0),
 					current.entries);
 				var current_ = _elm_lang$core$Native_Utils.update(
 					current,
@@ -14629,18 +14727,18 @@ var _user$project$Editor_Editor$update = F2(
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
-						_p9,
+						_p10,
 						{
 							records: A3(_user$project$Editor_Zipper$Zipper, before, current_, after)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'UpdatePage':
-				var _p6 = _p3._0;
+				var _p7 = _p4._0;
 				var page_ = function () {
-					var _p5 = _elm_lang$core$String$toFloat(_p3._1);
-					if (_p5.ctor === 'Ok') {
-						return _elm_lang$core$Basics$floor(_p5._0);
+					var _p6 = _elm_lang$core$String$toFloat(_p4._1);
+					if (_p6.ctor === 'Ok') {
+						return _elm_lang$core$Basics$floor(_p6._0);
 					} else {
 						return 0;
 					}
@@ -14651,7 +14749,7 @@ var _user$project$Editor_Editor$update = F2(
 					A2(
 						_user$project$Editor_Zipper$matchFirst,
 						function (e) {
-							return _elm_lang$core$Native_Utils.eq(e.id, _p6);
+							return _elm_lang$core$Native_Utils.eq(e.id, _p7);
 						},
 						A2(
 							_user$project$Editor_Zipper$withDefault,
@@ -14676,7 +14774,7 @@ var _user$project$Editor_Editor$update = F2(
 												A2(
 													_user$project$Editor_Zipper$matchFirst,
 													function (e) {
-														return _elm_lang$core$Native_Utils.eq(e.id, _p6);
+														return _elm_lang$core$Native_Utils.eq(e.id, _p7);
 													},
 													current.entries)))))))));
 				var firstPage_ = A2(
@@ -14698,7 +14796,7 @@ var _user$project$Editor_Editor$update = F2(
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
-						_p9,
+						_p10,
 						{
 							records: A2(
 								_user$project$Editor_Zipper$mapCurrent,
@@ -14707,7 +14805,7 @@ var _user$project$Editor_Editor$update = F2(
 										r,
 										{entries: entries_, firstPage: firstPage_});
 								},
-								_p10)
+								_p11)
 						}),
 					_1: A2(
 						_elm_lang$core$Task$attempt,
@@ -14716,7 +14814,7 @@ var _user$project$Editor_Editor$update = F2(
 							A2(
 								_elm_lang$core$Basics_ops['++'],
 								'id-',
-								_elm_lang$core$Basics$toString(_p6))))
+								_elm_lang$core$Basics$toString(_p7))))
 				};
 			case 'UpdateText':
 				var entries_ = A2(
@@ -14724,7 +14822,7 @@ var _user$project$Editor_Editor$update = F2(
 					function (e) {
 						return _elm_lang$core$Native_Utils.update(
 							e,
-							{text: _p3._1});
+							{text: _p4._1});
 					},
 					A2(
 						_user$project$Editor_Zipper$withDefault,
@@ -14732,13 +14830,13 @@ var _user$project$Editor_Editor$update = F2(
 						A2(
 							_user$project$Editor_Zipper$matchFirst,
 							function (e) {
-								return _elm_lang$core$Native_Utils.eq(e.id, _p3._0);
+								return _elm_lang$core$Native_Utils.eq(e.id, _p4._0);
 							},
 							current.entries)));
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
-						_p9,
+						_p10,
 						{
 							records: A2(
 								_user$project$Editor_Zipper$mapCurrent,
@@ -14747,18 +14845,18 @@ var _user$project$Editor_Editor$update = F2(
 										r,
 										{entries: entries_});
 								},
-								_p10)
+								_p11)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'UpdateSummary':
-				var _p8 = _p3._1;
+				var _p9 = _p4._1;
 				var summary_ = function () {
-					var _p7 = _elm_lang$core$String$isEmpty(_p8);
-					if (_p7 === true) {
+					var _p8 = _elm_lang$core$String$isEmpty(_p9);
+					if (_p8 === true) {
 						return _elm_lang$core$Maybe$Nothing;
 					} else {
-						return _elm_lang$core$Maybe$Just(_p8);
+						return _elm_lang$core$Maybe$Just(_p9);
 					}
 				}();
 				var entries_ = A2(
@@ -14774,13 +14872,13 @@ var _user$project$Editor_Editor$update = F2(
 						A2(
 							_user$project$Editor_Zipper$matchFirst,
 							function (e) {
-								return _elm_lang$core$Native_Utils.eq(e.id, _p3._0);
+								return _elm_lang$core$Native_Utils.eq(e.id, _p4._0);
 							},
 							current.entries)));
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
-						_p9,
+						_p10,
 						{
 							records: A2(
 								_user$project$Editor_Zipper$mapCurrent,
@@ -14789,7 +14887,7 @@ var _user$project$Editor_Editor$update = F2(
 										r,
 										{entries: entries_});
 								},
-								_p10)
+								_p11)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -14804,13 +14902,13 @@ var _user$project$Editor_Editor$update = F2(
 							A2(
 								_user$project$Editor_Zipper$matchFirst,
 								function (e) {
-									return _elm_lang$core$Native_Utils.eq(e.id, _p3._0);
+									return _elm_lang$core$Native_Utils.eq(e.id, _p4._0);
 								},
 								current.entries))));
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
-						_p9,
+						_p10,
 						{
 							records: A2(
 								_user$project$Editor_Zipper$mapCurrent,
@@ -14819,22 +14917,22 @@ var _user$project$Editor_Editor$update = F2(
 										r,
 										{entries: entries_});
 								},
-								_p10)
+								_p11)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'ExportJson':
 				return {
 					ctor: '_Tuple2',
-					_0: _p9,
+					_0: _p10,
 					_1: _user$project$Editor_Editor$jsonExport(
 						A2(
 							_elm_lang$core$Json_Encode$encode,
 							2,
-							_user$project$Editor_Data$zipperEncoder(_p10)))
+							_user$project$Editor_Data$zipperEncoder(_p11)))
 				};
 			default:
-				return {ctor: '_Tuple2', _0: _p9, _1: _elm_lang$core$Platform_Cmd$none};
+				return {ctor: '_Tuple2', _0: _p10, _1: _elm_lang$core$Platform_Cmd$none};
 		}
 	});
 var _user$project$Editor_Editor$RequestRecord = {ctor: 'RequestRecord'};
@@ -14884,9 +14982,9 @@ var _user$project$Editor_Editor$leftView = function (records) {
 			}
 		});
 };
-var _user$project$Editor_Editor$view = function (_p11) {
-	var _p12 = _p11;
-	var _p13 = _p12.records;
+var _user$project$Editor_Editor$view = function (_p12) {
+	var _p13 = _p12;
+	var _p14 = _p13.records;
 	return A2(
 		_elm_lang$html$Html$div,
 		{
@@ -14896,11 +14994,11 @@ var _user$project$Editor_Editor$view = function (_p11) {
 		},
 		{
 			ctor: '::',
-			_0: _user$project$Editor_Editor$leftView(_p13),
+			_0: _user$project$Editor_Editor$leftView(_p14),
 			_1: {
 				ctor: '::',
 				_0: _user$project$Editor_Editor$rightView(
-					_user$project$Editor_Zipper$itemCurrent(_p13)),
+					_user$project$Editor_Zipper$itemCurrent(_p14)),
 				_1: {
 					ctor: '::',
 					_0: A2(
@@ -15010,7 +15108,7 @@ var _user$project$Main$main = _elm_lang$html$Html$program(
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};
 if (typeof _user$project$Main$main !== 'undefined') {
-    _user$project$Main$main(Elm['Main'], 'Main', {"types":{"unions":{"Dict.LeafColor":{"args":[],"tags":{"LBBlack":[],"LBlack":[]}},"Dict.Dict":{"args":["k","v"],"tags":{"RBNode_elm_builtin":["Dict.NColor","k","v","Dict.Dict k v","Dict.Dict k v"],"RBEmpty_elm_builtin":["Dict.LeafColor"]}},"Maybe.Maybe":{"args":["a"],"tags":{"Just":["a"],"Nothing":[]}},"Main.Msg":{"args":[],"tags":{"EditorMsg":["Editor.Editor.Msg"],"ImportDataHandler":["Result.Result Http.Error Editor.Data.JsonRoot"]}},"Dict.NColor":{"args":[],"tags":{"BBlack":[],"Red":[],"NBlack":[],"Black":[]}},"Http.Error":{"args":[],"tags":{"BadUrl":["String"],"NetworkError":[],"Timeout":[],"BadStatus":["Http.Response String"],"BadPayload":["String","Http.Response String"]}},"Result.Result":{"args":["error","value"],"tags":{"Ok":["value"],"Err":["error"]}},"Editor.Data.Category":{"args":[],"tags":{"World":[],"Invalid":[],"Power":[],"Character":[]}},"Editor.Editor.Msg":{"args":[],"tags":{"RequestRecord":[],"ExportJson":[],"DeleteRecord":["Int"],"SelectRecord":["Int"],"UpdateSummary":["Int","String"],"AddEntry":["Int"],"UpdateText":["Int","String"],"AddRecord":["Int"],"UpdatePage":["Int","String"],"DeleteEntry":["Int"],"RequestEntry":[],"UpdateName":["String"],"NoOp":[]}}},"aliases":{"Editor.Data.Record":{"args":[],"type":"{ id : Int , name : String , category : Editor.Data.Category , firstPage : Int , entries : List Editor.Data.Entry }"},"Editor.Data.JsonRoot":{"args":[],"type":"{ records : List Editor.Data.Record }"},"Http.Response":{"args":["body"],"type":"{ url : String , status : { code : Int, message : String } , headers : Dict.Dict String String , body : body }"},"Editor.Data.Entry":{"args":[],"type":"{ id : Int, page : Int, text : String, summary : Maybe.Maybe String }"}},"message":"Main.Msg"},"versions":{"elm":"0.18.0"}});
+    _user$project$Main$main(Elm['Main'], 'Main', {"types":{"unions":{"Dict.LeafColor":{"args":[],"tags":{"LBBlack":[],"LBlack":[]}},"Dict.Dict":{"args":["k","v"],"tags":{"RBNode_elm_builtin":["Dict.NColor","k","v","Dict.Dict k v","Dict.Dict k v"],"RBEmpty_elm_builtin":["Dict.LeafColor"]}},"Maybe.Maybe":{"args":["a"],"tags":{"Just":["a"],"Nothing":[]}},"Main.Msg":{"args":[],"tags":{"EditorMsg":["Editor.Editor.Msg"],"ImportDataHandler":["Result.Result Http.Error Editor.Data.JsonRoot"]}},"Dict.NColor":{"args":[],"tags":{"BBlack":[],"Red":[],"NBlack":[],"Black":[]}},"Http.Error":{"args":[],"tags":{"BadUrl":["String"],"NetworkError":[],"Timeout":[],"BadStatus":["Http.Response String"],"BadPayload":["String","Http.Response String"]}},"Result.Result":{"args":["error","value"],"tags":{"Ok":["value"],"Err":["error"]}},"Editor.Data.Category":{"args":[],"tags":{"World":[],"Invalid":[],"Power":[],"Character":[]}},"Editor.Editor.Msg":{"args":[],"tags":{"RequestRecord":[],"ExportJson":[],"DeleteRecord":["Int"],"SelectRecord":["Int"],"UpdateSummary":["Int","String"],"AddEntry":["Int"],"UpdateText":["Int","String"],"AddRecord":["Int"],"UpdatePage":["Int","String"],"DeleteEntry":["Int"],"RequestEntry":[],"SelectCategory":["Editor.Data.Category"],"UpdateName":["String"],"NoOp":[]}}},"aliases":{"Editor.Data.Record":{"args":[],"type":"{ id : Int , name : String , category : Editor.Data.Category , firstPage : Int , entries : List Editor.Data.Entry }"},"Editor.Data.JsonRoot":{"args":[],"type":"{ records : List Editor.Data.Record }"},"Http.Response":{"args":["body"],"type":"{ url : String , status : { code : Int, message : String } , headers : Dict.Dict String String , body : body }"},"Editor.Data.Entry":{"args":[],"type":"{ id : Int, page : Int, text : String, summary : Maybe.Maybe String }"}},"message":"Main.Msg"},"versions":{"elm":"0.18.0"}});
 }
 
 if (typeof define === "function" && define['amd'])
